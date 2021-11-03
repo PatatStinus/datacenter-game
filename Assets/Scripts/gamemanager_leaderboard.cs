@@ -6,10 +6,15 @@ public class gamemanager_leaderboard : MonoBehaviour
 {
     private List<LeaderboardEntry> LeaderboardEntries;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
