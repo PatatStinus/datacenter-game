@@ -26,7 +26,7 @@ public class DataLeak : MonoBehaviour
 
         if (countdownDelay <= 0)
         {
-            dataStreamText.text = Random.Range(0, 2) == 0 ? "0" + dataStreamText.text : "1" + dataStreamText.text;
+            dataStreamText.text = Random.Range(0, 2) + dataStreamText.text;
             countdownDelay = 50;
         }
     }
