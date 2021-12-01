@@ -6,55 +6,62 @@ using TMPro;
 
 public class TemperatureManager : MonoBehaviour
 {
-    [SerializeField] Button openVent;
-    [SerializeField] Button closeVent;
-
     [SerializeField] TMP_Text tempDisplay;
 
     [SerializeField] float timer;
 
-    [SerializeField] int insideTemp;
-    [SerializeField] int outsideTemp;
-    [SerializeField] int currentRoomTemp;
+    float insideTemp;
+
+    public bool guaranteedFire;
+
     int desiredTemp = 25;
 
     private void Start()
     {
-        currentRoomTemp = Random.Range(25, 28);
-        outsideTemp = Random.Range(2, 35);
-        insideTemp = 60;
+        insideTemp = Random.Range(20, 30);
+        guaranteedFire = false;
     }
 
     private void Update()
     {
-        /*The inside temperature needs to take how far the vent is open into consideration
-         the vent needs to calculate the outside temperature and how much air it lets in
-         the amount of air it lets in needs to be calculated compared to how much air is in the room
-         this amount needs to be mixed with the currentInsideTemp and calculated against the insideTemp (hardware output temperature)
-         the currentRoomTemp needs to increment or decrement very fast towards the calculated temp
-
-         every 10 seconds? there could be a 50% chance of a temperature changing
-         temperatures have a small-ish chance of going super high which can result in fires
-        
-         once the room reaches optimal temperature, the next timer can increase by 30 seconds?
-         */
-
+        tempDisplay.text = Mathf.FloorToInt(insideTemp).ToString();
 
         timer -= Time.deltaTime;
 
+        if (insideTemp >= 45)
+            insideTemp = 45;
+        if (insideTemp <= 15)
+            insideTemp = 15;
+        if (insideTemp <= 45 && insideTemp >= 31)
+            guaranteedFire = true;
+
+        if (Random.Range(0, 10) == 10 && insideTemp > desiredTemp)
+            guaranteedFire = true;
+
         if (timer <= 0)
         {
+            insideTemp = Random.Range(20, 30);
 
+            if (Random.Range(0, 10) == 10)
+                insideTemp = Random.Range(31, 45);           
+            
+            timer = Random.Range(4, 8);
         }
     }
 
-    private void CloseVent()
+    public void IncreaseTemperature()
     {
+        insideTemp += 1;
 
+        if (insideTemp == desiredTemp)
+            timer = 20;
     }
 
-    private void OpenVent()
+    public void DecreaseTemperature()
     {
+        insideTemp -= 1;
 
+        if (insideTemp == desiredTemp)
+            timer = 20;
     }
 }
