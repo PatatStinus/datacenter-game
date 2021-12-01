@@ -7,7 +7,7 @@ public class Slidertimer : MonoBehaviour
 {
     private float timeRemaining;
     private float timerMax;
-    public Slidertimer slider;
+    public Slider slider;
 
     private void Start()
     {
