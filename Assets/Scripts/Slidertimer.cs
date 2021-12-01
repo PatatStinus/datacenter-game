@@ -5,37 +5,43 @@ using UnityEngine.UI;
 
 public class Slidertimer : MonoBehaviour
 {
-    private float timeRemaining;
-    private float timerMax;
-    public Slider slider;
+    public Slider timeSlider;
+    public Text timeSliderText;
+    public float gameTime;
 
-    private void Start()
+    private bool stopTimer;
+
+    void Start()
     {
-        
+        //start de timer bij opstarten game, moet nog omgezet naar button 
+        stopTimer = false;
+        timeSlider.maxValue = gameTime;
+        timeSlider.value = gameTime;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = CalculateSliderValue();
+        float time = gameTime - Time.time;
+        
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time - minutes * 60f);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        string textTime = string.Format("{00}", seconds);
+        
+        // stopt bij 0
+        if ( time <= 0)
         {
-            timeRemaining = timerMax;
+            stopTimer = true;
         }
 
-        if (timeRemaining <= 0)
+        if ( stopTimer == false)
         {
-            timeRemaining = 0;
+            timeSliderText.text = textTime;
+            timeSlider.value = time;
+
         }
 
-        else if (timeRemaining > 0)
-        {
-            timeRemaining -= Time.deltaTime;
-        }
-    }
-    float CalculateSliderValue()
-    {
-        return (timeRemaining / timerMax);
     }
 }

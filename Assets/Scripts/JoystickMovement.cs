@@ -13,6 +13,9 @@ public class JoystickMovement : MonoBehaviour
 
     private void Start()
     {
+
+        //startpos klopt niet, moet afgesteld op boundary ipv world? 
+        //script kan wss helemaal wel weg ivm built-in movement control systems
         startPosition = new Vector3(919,-387,0);
         screenBounds = new Vector2(bigCube.localScale.x, bigCube.localScale.y);
         objectWidth = stick.transform.localScale.x;
