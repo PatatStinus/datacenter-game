@@ -11,7 +11,8 @@ public class Timer : MonoBehaviour
     public static bool gameOver;
     [SerializeField] TMP_Text timeText;
     [SerializeField] TMP_Text scoreText;
-
+    float minutes = 0;
+    float seconds = 0;
     private void Start()
     {
         score = 0;
@@ -20,22 +21,26 @@ public class Timer : MonoBehaviour
 
     private void Update()
     {
-        CountDown();      
+        CountDown();
     }
 
     private void CountDown()
     {
-        if (timer >= 0)
+        if (timer > 0)
         {
             timer -= Time.deltaTime;
 
-            float minutes = Mathf.FloorToInt(timer / 60);
-            float seconds = Mathf.FloorToInt(timer % 60);
+            minutes = Mathf.FloorToInt(timer / 60);
+            seconds = Mathf.FloorToInt(timer % 60);
 
-            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
         else
+        {
+            minutes = 0;
+            seconds = 0;
             gameOver = true;
+        }
+        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void AddScore(int s)

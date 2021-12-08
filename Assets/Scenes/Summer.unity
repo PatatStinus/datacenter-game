@@ -330,13 +330,13 @@ GameObject:
   - component: {fileID: 350532293}
   - component: {fileID: 350532292}
   - component: {fileID: 350532294}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &350532292
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2076,6 +2076,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163392ff6c4baff4584a46de0e4ec862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cableLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &2117983103
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,7 +2094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2117983104
 RectTransform:
   m_ObjectHideFlags: 0
