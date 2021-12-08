@@ -5,37 +5,59 @@ using UnityEngine.UI;
 
 public class Slidertimer : MonoBehaviour
 {
-    private float timeRemaining;
-    private float timerMax;
-    public Slider slider;
+    public Slider timeSlider;
+    public Text timeSliderTextNumber;
+    public float gameTime;
+    public Button timerButton;
 
-    private void Start()
+
+    private bool stopTimer;
+
+    void Start()
     {
-        
+
+        Button btn = timerButton.GetComponent<Button>();
+        btn.onClick.AddListener(TimerStart);
+        stopTimer = true;
+    }
+
+
+    public void TimerStart()
+    {
+
+        if (stopTimer == true)
+        {
+            stopTimer = false;
+            timeSlider.maxValue = gameTime;
+            timeSlider.value = gameTime;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = CalculateSliderValue();
+    //time elapsed since scene load. How make time elapsed since button press?
+        float time = gameTime - Time.time;
+        
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time - minutes * 60f);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        string textTime = string.Format("{00}", seconds);
+        
+        // stopt bij 0
+        if ( time <= 0)
         {
-            timeRemaining = timerMax;
+            stopTimer = true;
+            timeSliderTextNumber.text = "Download successful!";
+
         }
 
-        if (timeRemaining <= 0)
+        if ( stopTimer == false)
         {
-            timeRemaining = 0;
+            timeSliderTextNumber.text = "Time remaining: " + textTime;
+            timeSlider.value = time;
+
         }
 
-        else if (timeRemaining > 0)
-        {
-            timeRemaining -= Time.deltaTime;
-        }
-    }
-    float CalculateSliderValue()
-    {
-        return (timeRemaining / timerMax);
     }
 }
