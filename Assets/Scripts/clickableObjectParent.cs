@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpObjects : MonoBehaviour
+public abstract class clickableObjectParent : MonoBehaviour
 {
     [SerializeField] private Transform player; 
     private Renderer shader;
@@ -17,5 +17,10 @@ public class PickUpObjects : MonoBehaviour
     {
         distance = Vector2.Distance(transform.position, player.position);
         shader.material.SetFloat("_Distance", distance);
+    }
+
+    public virtual void ObjectClicked()
+    {
+        throw new System.NotImplementedException();
     }
 }
