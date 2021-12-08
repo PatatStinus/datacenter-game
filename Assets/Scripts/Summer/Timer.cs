@@ -8,18 +8,19 @@ public class Timer : MonoBehaviour
 {
     public float timer;
     public int score;
+    public static bool gameOver;
     [SerializeField] TMP_Text timeText;
     [SerializeField] TMP_Text scoreText;
 
     private void Start()
     {
-        score = 0;       
+        score = 0;
+        gameOver = false;
     }
 
     private void Update()
     {
-        CountDown();
-        scoreText.text = score.ToString();
+        CountDown();      
     }
 
     private void CountDown()
@@ -33,10 +34,13 @@ public class Timer : MonoBehaviour
 
             timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
+        else
+            gameOver = true;
     }
 
     public void AddScore(int s)
     {
         score += s;
+        scoreText.text = score.ToString();
     }
 }
