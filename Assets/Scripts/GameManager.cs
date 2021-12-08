@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    bool minigameActive = false;
+    public bool minigameActive = false;
 
     private void Awake() => DontDestroyOnLoad(gameObject);
 
