@@ -32,7 +32,7 @@ public class TemperatureManager : MonoBehaviour
             insideTemp = 45;
         if (insideTemp <= 15)
             insideTemp = 15;
-        if (insideTemp <= 45 && insideTemp >= 31)
+        if (insideTemp >= 31)
             guaranteedFire = true;
 
         if (Random.Range(0, 10) == 10 && insideTemp > desiredTemp)
@@ -40,11 +40,11 @@ public class TemperatureManager : MonoBehaviour
 
         if (timer <= 0)
         {
-            insideTemp = Random.Range(20, 30);
-
             if (Random.Range(0, 10) == 10)
-                insideTemp = Random.Range(31, 45);           
-            
+                insideTemp = Random.Range(31, 45);     
+            else
+                insideTemp = Random.Range(20, 30);
+
             timer = Random.Range(4, 8);
         }
     }

@@ -9,19 +9,17 @@ public class Slidertimer : MonoBehaviour
     public Text timeSliderTextNumber;
     public float gameTime;
     public Button timerButton;
-
-
-    private bool stopTimer;
+    float time = 0; 
+    private bool stopTimer = true;
 
     void Start()
     {
-
+     // sets up "download" button 
         Button btn = timerButton.GetComponent<Button>();
         btn.onClick.AddListener(TimerStart);
-        stopTimer = true;
     }
 
-
+    // when button pressed, this happens
     public void TimerStart()
     {
 
@@ -33,28 +31,21 @@ public class Slidertimer : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-    //time elapsed since scene load. How make time elapsed since button press?
-        float time = gameTime - Time.time;
-        
-        int minutes = Mathf.FloorToInt(time / 60);
-        int seconds = Mathf.FloorToInt(time - minutes * 60f);
-
-        string textTime = string.Format("{00}", seconds);
-        
-        // stopt bij 0
-        if ( time <= 0)
+     
+        // stopt timer bij 10 seconden (100%)
+        if ( time >= 10)
         {
             stopTimer = true;
             timeSliderTextNumber.text = "Download successful!";
-
         }
 
+        // als timer loopt:
         if ( stopTimer == false)
         {
-            timeSliderTextNumber.text = "Time remaining: " + textTime;
+            time += Time.deltaTime;
+            timeSliderTextNumber.text = "Downloading: " + (time * 10).ToString("0.00") + "%";
             timeSlider.value = time;
 
         }

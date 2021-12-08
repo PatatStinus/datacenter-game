@@ -4,29 +4,48 @@ using UnityEngine;
 
 public class CableManager : MonoBehaviour
 {
-    RaycastHit hit;
-
     Transform hitCable;
+
+    RaycastHit2D hit;
+
+    [SerializeField] LayerMask cableLayer;
+
+    private void Start()
+    {
+        hitCable = null;
+    }
 
     private void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (hitCable == null && Physics.Raycast(ray.origin, ray.direction, out hit))
-        {
-            Debug.Log(hit.transform.name);
-            hitCable = hit.transform;
-        }
-        if (hitCable == null)
-            return;
+        //hit = Physics2D.Raycast(Input.mousePosition, ray.direction, cableLayer);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            hitCable.position = new Vector3(hit.point.x, hit.point.y, hitCable.position.z);
-        }
-        else
-        {
-            hitCable = null;
-        }
+        //if (hit)
+        //{
+        //    hitCable = hit.transform;
+
+        //    Debug.Log(hit.transform.name);
+        //    if (Input.GetMouseButton(0))
+        //    {
+        //        hitCable.position = new Vector3(hit.point.x, hit.point.y, hitCable.position.z);
+        //    }
+        //    else if (Input.GetMouseButtonUp(0))
+        //        hitCable = null;
+        //}
+
+
+        //if (mousePos != null)
+        //{
+        //    hitCable = hit.transform;
+
+        //    Debug.Log(hit.transform.name);
+        //    if (Input.GetMouseButton(0))
+        //    {
+        //        hitCable.position = new Vector3(hit.point.x, hit.point.y, hitCable.position.z);
+        //    }
+        //    else if (Input.GetMouseButtonUp(0))
+        //        hitCable = null;
+        //}
     }
 }
