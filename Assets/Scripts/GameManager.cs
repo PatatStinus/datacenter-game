@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool minigameActive = false;
-
     private void Awake() => DontDestroyOnLoad(gameObject);
+
+    // *********
+    // Minigames
+    // *********
+
+    public GameObject[] minigamePrefabs;
+
+    public bool minigameActive = false;
 
     // ***********
     // Leaderboard

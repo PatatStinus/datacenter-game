@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class clickableObjectStartMinigame : clickableObjectParent
 {
+    [SerializeField] GameManager GM;
+
     enum minigames
     {
         minigame_dataLeak,
@@ -18,7 +20,7 @@ public class clickableObjectStartMinigame : clickableObjectParent
         {
             case minigames.minigame_dataLeak:
                 {
-                    Debug.Log("test");
+                    //Instantiate()
                 }
                 break;
 

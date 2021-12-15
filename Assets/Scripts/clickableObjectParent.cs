@@ -8,10 +8,7 @@ public abstract class clickableObjectParent : MonoBehaviour
     private Renderer shader;
     private float distance;
 
-    private void Start()
-    {
-        shader = GetComponent<Renderer>();
-    }
+    private void Start() => shader = GetComponent<Renderer>();
 
     private void Update()
     {
