@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class Timer : MonoBehaviour
     private void Update()
     {
         CountDown();
+
+        if (gameOver)
+            SceneManager.LoadScene("GameOver");
     }
 
     private void CountDown()
