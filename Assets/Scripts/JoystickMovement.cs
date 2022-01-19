@@ -8,6 +8,7 @@ public class JoystickMovement : MonoBehaviour
     public GameObject joystick;
     public GameObject joystickBG;
     public Vector2 joystickVec;
+    public float minX, maxX, minY, maxY;
     private Vector2 joystickTouchPos;
     private Vector2 joystickOriginalPos;
     private float joystickRadius;
@@ -21,8 +22,9 @@ public class JoystickMovement : MonoBehaviour
     public void PointerDown()
     {
         joystick.transform.position = Input.mousePosition;
-        joystickBG.transform.position = Input.mousePosition;
-        joystickTouchPos = Input.mousePosition;
+        joystick.transform.localPosition = new Vector2(Mathf.Clamp(joystick.transform.localPosition.x, minX, maxX), Mathf.Clamp(joystick.transform.localPosition.y, minY, maxY));
+        joystickBG.transform.position = joystick.transform.position;
+        joystickTouchPos = joystick.transform.position;
     }
 
     public void Drag(BaseEventData baseEventData)
