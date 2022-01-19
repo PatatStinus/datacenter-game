@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Walls
+    uniqueID: 889000161
+    locked: 0
+  - name: Pipes
+    uniqueID: 995802431
+    locked: 0
