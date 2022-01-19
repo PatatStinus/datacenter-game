@@ -30,6 +30,11 @@ public class CableManager : MonoBehaviour
             randomCables.Add(cables[random]);
             cables.Remove(cables[random]);
         }
+
+        for (int i = 0; i < randomCables.Count; i++)
+        {
+            randomCables[i].GetComponent<Renderer>().material = cableConnectors[i].GetComponent<Renderer>().material;
+        }
     }
 
     private void Update()
@@ -43,7 +48,13 @@ public class CableManager : MonoBehaviour
                 Debug.Log(hitCable);
             }
             else if (Input.GetMouseButtonUp(0))
+            {
+                if (randomCables.Contains(hitCable))
+                {
+                    hitCable.transform.position = hitCable.GetComponent<DrawLine>().startPos;
+                }
                 hitCable = null;
+            }
 
             if (hitCable == null)
                 return;
@@ -59,7 +70,7 @@ public class CableManager : MonoBehaviour
                 {
                     if (Vector3.Distance(cableConnectors[i].position, hitCable.position) < 2f)
                     {
-                        //hitCable.position = cableConnectors[i].position;
+                        hitCable.position = cableConnectors[i].position;
                         randomCables.Remove(randomCables[i]);
                         cableConnectors.Remove(cableConnectors[i]);
                         hitCable = null;
