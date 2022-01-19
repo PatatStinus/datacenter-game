@@ -33,6 +33,9 @@ public class DataLeak : MonoBehaviour
             countdownDelay = 3;
         }
 
+        if (hasWon)
+            TapeObject.transform.position = Vector3.MoveTowards(TapeObject.transform.position, new Vector3(30.09f, -5.17845f, 61.29453f), 6 * Time.deltaTime);
+
         if (hasWon || !Input.GetMouseButton(0) || !Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
             return;
 
