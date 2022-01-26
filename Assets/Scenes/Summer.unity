@@ -2204,6 +2204,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1868449193576827125, guid: 7188e341664b6794086f9c67b6f52414, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1868449193747111488, guid: 7188e341664b6794086f9c67b6f52414, type: 3}
       propertyPath: m_Name
       value: Cables_MiniGame
